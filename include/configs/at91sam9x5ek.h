@@ -29,7 +29,7 @@
 #define CONFIG_CMD_BOOTZ
 #define CONFIG_OF_LIBFDT
 
-
+#define CONFIG_CMD_MII
 /* general purpose I/O */
 #define CONFIG_ATMEL_LEGACY		/* required until (g)pio is fixed */
 #define CONFIG_AT91_GPIO
@@ -139,7 +139,6 @@
 
 /* Ethernet */
 #define CONFIG_MACB
-#define CONFIG_RMII
 #define CONFIG_NET_RETRY_COUNT		20
 #define CONFIG_MACB_SEARCH_PHY
 

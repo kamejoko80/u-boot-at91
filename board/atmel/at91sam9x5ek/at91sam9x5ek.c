@@ -96,6 +96,8 @@ int board_eth_init(bd_t *bis)
 {
 	int rc = 0;
 
+
+
 #ifdef CONFIG_MACB
 	if (has_emac0())
 		rc = macb_eth_initialize(0,

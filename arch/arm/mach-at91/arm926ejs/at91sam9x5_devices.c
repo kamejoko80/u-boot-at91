@@ -177,6 +177,22 @@ void at91_uhp_hw_init(void)
 #ifdef CONFIG_MACB
 void at91_macb_hw_init(void)
 {
+       at91_set_pio_output(AT91_PIO_PORTB, 18, 0); /* PHY RESET_N */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 0, 1); /* Mode 0 */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 1, 1); /* Mode 1 */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 13, 0); /* MII/RMII Select */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 14, 0); /* PHYAD2  */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 2, 0); /* PHYAD0 */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 15, 0); /* PHYAD1 */ 
+        at91_set_pio_output(AT91_PIO_PORTB, 3, 1); /* Mode 2 */ 
+ 
+        mdelay(1); 
+ 
+ 
+        at91_set_pio_output(AT91_PIO_PORTB, 18, 1); /* PHY RESET_N */ 
+        mdelay(1); 
+
+
 	if (has_emac0()) {
 		/* Enable EMAC0 clock */
 		at91_periph_clk_enable(ATMEL_ID_EMAC0);
@@ -191,6 +207,7 @@ void at91_macb_hw_init(void)
 		at91_set_a_periph(AT91_PIO_PORTB, 10, 0);	/* ETX1 */
 		at91_set_a_periph(AT91_PIO_PORTB, 5, 0);	/* EMDIO */
 		at91_set_a_periph(AT91_PIO_PORTB, 6, 0);	/* EMDC */
+
 	}
 
 	if (has_emac1()) {
@@ -209,7 +226,6 @@ void at91_macb_hw_init(void)
 		at91_set_b_periph(AT91_PIO_PORTC, 30, 0);	/* EMDC */
 	}
 
-#ifndef CONFIG_RMII
 	/* Only emac0 support MII */
 	if (has_emac0()) {
 		at91_set_a_periph(AT91_PIO_PORTB, 16, 0);	/* ECRS */
@@ -221,6 +237,5 @@ void at91_macb_hw_init(void)
 		at91_set_a_periph(AT91_PIO_PORTB, 12, 0);	/* ETX3 */
 		at91_set_a_periph(AT91_PIO_PORTB, 8, 0);	/* ETXER */
 	}
-#endif
 }
 #endif
